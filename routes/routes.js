@@ -21,6 +21,7 @@ router.post("/postprato", async (req, res)=>{
 })
 
 router.get("/getallprato", async (req, res)=>{
+    
     try{
         const data = await Model.find()
         res.json(data)

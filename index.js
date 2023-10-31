@@ -25,7 +25,7 @@ database.once("connected", ()=>{
 
 
 app.get("/", (req, res) =>{
-    res.send("ola resto")
+    res.send("ola restorante")
 })
 
 app.use("/api", routes)
