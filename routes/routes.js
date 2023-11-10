@@ -83,5 +83,15 @@ router.delete("/deletegaleria/:id", async (req, res)=>{
     }
 })
 
+router.get("/getallgaleria", async (req, res)=>{
+    
+    try{
+        const data = await ModelImege.find()
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
 
 module.exports = router;
