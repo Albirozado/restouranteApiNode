@@ -1,7 +1,8 @@
 const express = require("express")
 const Model = require("../model/model")
-
+const ModelImege = require("../model/modelimage")
 const router = express.Router()
+
 
 router.post("/postprato", async (req, res)=>{
     const data = new Model({
@@ -53,13 +54,34 @@ router.delete("/deleteprato/:id", async (req, res)=>{
     }
     catch (error) {
         res.status(400).json({ message: error.message })
-    }})
+    }
+})
 
+router.post("/postgaleria", async (req, res)=>{
 
+    const data = new ModelImege({
+        galeriafoto: req.body.galeriafoto
+        
+    })
+    try{
+        const datasave = await data.save()
+        res.status(200).json(datasave)
+    }
+    catch(error){
+        res.status(400).json({message:error.message})
+    }
+})
 
-
-
-
+router.delete("/deletegaleria/:id", async (req, res)=>{
+    try {
+        const id = req.params.id;
+        const data = await ModelImege.findByIdAndDelete(id)
+        res.send(`Document with ${data.pratonome} has been deleted..`)
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+})
 
 
 module.exports = router;
