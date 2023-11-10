@@ -76,7 +76,7 @@ router.delete("/deletegaleria/:id", async (req, res)=>{
     try {
         const id = req.params.id;
         const data = await ModelImege.findByIdAndDelete(id)
-        res.send(`Document with ${data.pratonome} has been deleted..`)
+        res.send(`Document with ${data.galeriafoto} has been deleted..`)
     }
     catch (error) {
         res.status(400).json({ message: error.message })
