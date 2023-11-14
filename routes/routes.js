@@ -33,6 +33,7 @@ router.get("/getallprato", async (req, res)=>{
 })
 
 
+
 router.get("/getpratoid/:id", async (req, res)=>{
     try{
         const dataID = await Model.findById(req.params.id)
@@ -93,5 +94,34 @@ router.get("/getallgaleria", async (req, res)=>{
         res.status(500).json({message: error.message})
     }
 })
+
+
+//menu filder data 
+
+router.get("/getmaispedidos", async (req, res)=>{
+    
+    try{
+        const data = await Model.find({pratocategoria: "maispedidos"})
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
