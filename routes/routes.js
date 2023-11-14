@@ -101,7 +101,7 @@ router.get("/getallgaleria", async (req, res)=>{
 router.get("/getmaispedidos", async (req, res)=>{
     
     try{
-        const data = await Model.find({pratocategoria: "maispedidos"})
+        const data = await Model.find({"pratocategoria":"maispedidos"})
         res.json(data)
     }
     catch(error){
