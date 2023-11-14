@@ -111,13 +111,49 @@ router.get("/getmaispedidos", async (req, res)=>{
 
 
 
+router.get("/getcafe", async (req, res)=>{
+    
+    try{
+        const data = await Model.find({"pratocategoria":"cafe"})
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
 
+router.get("/getentradas", async (req, res)=>{
+    
+    try{
+        const data = await Model.find({"pratocategoria":"entradas"})
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
 
+router.get("/getprincipal", async (req, res)=>{
+    
+    try{
+        const data = await Model.find({"pratocategoria":"principal"})
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
 
-
-
-
-
+router.get("/getsobremensa", async (req, res)=>{
+    
+    try{
+        const data = await Model.find({"pratocategoria":"sobremesa"})
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
 
 
 
