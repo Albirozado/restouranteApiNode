@@ -6,27 +6,26 @@ require("dotenv").config()
 
 
 const app = express()
-const PORT = 5000
-const mongoString = process.env.DATABASE_URL
-app.use(express.json())
-app.use(cors())
+const PORT = process.env.PORT || 5000
 
-mongoose.connect(mongoString)
-const database = mongoose.connection
-
-database.on("error", (error) =>{
-    console.log(error)
-})
-
-database.once("connected", ()=>{
-    console.log("database connected")
-})
-
-
-
-app.get("/", (req, res) =>{
-    res.send("ola restorante")
-})
+const connectDB = async () => {
+    try {
+      const conn = await mongoose.connect(process.env.DATABASE_URL);
+      console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+      console.log(error);
+      process.exit(1);
+    }
+  }
+  
+  //Routes go here
+  app.all('/', (req,res) => {
+      res.json({"every thing":"is awesome"})
+  })
 
 app.use("/api", routes)
-app.listen(PORT, ()=>{console.log(`servidor corendo na porta ${PORT}`)})
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
+})
